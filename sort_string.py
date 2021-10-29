@@ -4,8 +4,16 @@ def swap(TAM,i,j):
         return TAM
     return(TAM[0:i]+TAM[j]+TAM[i+1:j]+TAM[i]+TAM[j+1:])
 
-#Fetch input from user
+#Fetch input from user and process it
 string=input()
+if(string[-1]!="#"):
+    print("String should end with #")
+    exit()
+char = ["T","A","M"]
+for i in string[:-1]:
+    if i not in char:
+        print("String should only contain T,A,M")
+        exit()
 length = len(string)
 
 '''
@@ -23,10 +31,10 @@ while(pos<end+1):
     #if character is T, we swap with 'start' position
     if(string[pos]=="T"):
         string = swap(string,start,pos)
-        start = start+1
-        if(pos==0):
+        if(pos==start):
             #This makes us avoid infinite loop where we keep on swapping first character with itself
             pos = pos+1
+        start = start+1
     #if character is A, we skip current position
     elif(string[pos] == "A"):
         pos = pos+1
